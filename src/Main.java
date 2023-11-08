@@ -1,6 +1,4 @@
-import entidades.Asistencia;
-import entidades.Cargo;
-import entidades.Feriado;
+import entidades.*;
 
 import java.util.LinkedList;
 
@@ -31,5 +29,25 @@ public class Main {
         for (Cargo car : colCargo){
             System.out.println(car.toString());
         }
+
+        Notificacion notificacion = new Notificacion();
+        notificacion.llenarDatosIniciales();
+        LinkedList<Notificacion> colNotificacion = notificacion.getColNotificacion();
+        for (Notificacion not : colNotificacion){
+            System.out.println(not.toString());
+    }
+        Solicitud solicitud = new Solicitud();
+        solicitud.llenarDatosIniciales();
+        LinkedList<Solicitud> colSolicitud = solicitud.getColSolicitud();
+        for (Solicitud sol : colSolicitud){
+            System.out.println(sol.toString());
+
+    }
+        Personal personal = new Personal();
+        personal.llenarDatosIniciales();
+        LinkedList<Personal> colPersonal = personal.getColPersonal();
+        for (Personal per : colPersonal){
+            System.out.println(per.toString());
+    }
     }
 }
