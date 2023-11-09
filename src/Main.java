@@ -9,12 +9,28 @@ public class Main {
         // ============================
 
 
-        Asistencia asistencia = new Asistencia();
-        asistencia.llenarDatosIniciales();
-        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(2);
-        for(Asistencia asi : colAsiPersona){
-            System.out.println(asi.toString());
+        Compensacion compensacion = new Compensacion();
+        compensacion.llenarDatosIniciales();
+        LinkedList<Compensacion> colCompensacion = compensacion.getColCompensacion();
+        for (Compensacion com : colCompensacion){
+            System.out.println(com.toString());
         }
+
+
+//        LogeoFallido logeoFallido = new LogeoFallido();
+//        logeoFallido.llenarDatosIniciales();
+//        LinkedList<LogeoFallido> colLogeoFallido = logeoFallido.getColLogeoFallido();
+//        for (LogeoFallido log : colLogeoFallido){
+//            System.out.println(log.toString());
+//        }
+
+
+//        Asistencia asistencia = new Asistencia();
+//        asistencia.llenarDatosIniciales();
+//        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(2);
+//        for(Asistencia asi : colAsiPersona){
+//            System.out.println(asi.toString());
+//        }
 
 
         // Autor Jose Cotos
