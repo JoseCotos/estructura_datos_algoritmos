@@ -1,21 +1,72 @@
-import entidades.*;
+import entidades.Asistencia;
 
 import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
+        pruebaCarga();
+    }
 
+    public static void pruebaListadoPersonaTardanza(){
+        Asistencia asistencia = new Asistencia();
+        asistencia.llenarDatosIniciales();
+        LinkedList<Asistencia> colAsiPersona = asistencia.buscarTardanzaPersona(1);
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
+    }
+
+    public static void pruebaListadoPersonaHExtra(){
+        Asistencia asistencia = new Asistencia();
+        asistencia.llenarDatosIniciales();
+        LinkedList<Asistencia> colAsiPersona = asistencia.buscarHExtraPersona(1);
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
+    }
+
+    public static void pruebaMarcacionAsistencia(){
+        Asistencia asistencia = new Asistencia();
+        asistencia.setFechaHoraEntradaSalida();
+        asistencia.llenarDatosIniciales();
+
+        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(1);
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
+
+        System.out.println("*************************************");
+        System.out.println("*************************************");
+        System.out.println("*************************************");
+
+        asistencia.registrarEntrada(1);
+        LinkedList<Asistencia> colAsiPersona2 = asistencia.buscarAsistenciaPersona(1);
+        for(Asistencia asi : colAsiPersona2){
+            System.out.println(asi.toString());
+        }
+
+        System.out.println("*************************************");
+        System.out.println("*************************************");
+        System.out.println("*************************************");
+
+        asistencia.registrarSalida(1);
+        LinkedList<Asistencia> colAsiPersona3 = asistencia.buscarAsistenciaPersona(1);
+        for(Asistencia asi : colAsiPersona3){
+            System.out.println(asi.toString());
+        }
+    }
+
+    public static void pruebaCarga(){
         //Para pruebas de datos cargado
         // ============================
 
 
-        Compensacion compensacion = new Compensacion();
-        compensacion.llenarDatosIniciales();
-        LinkedList<Compensacion> colCompensacion = compensacion.getColCompensacion();
-        for (Compensacion com : colCompensacion){
-            System.out.println(com.toString());
-        }
-
+//        Compensacion compensacion = new Compensacion();
+//        compensacion.llenarDatosIniciales();
+//        LinkedList<Compensacion> colCompensacion = compensacion.getColCompensacion();
+//        for (Compensacion com : colCompensacion){
+//            System.out.println(com.toString());
+//        }
 
 //        LogeoFallido logeoFallido = new LogeoFallido();
 //        logeoFallido.llenarDatosIniciales();
@@ -25,12 +76,12 @@ public class Main {
 //        }
 
 
-//        Asistencia asistencia = new Asistencia();
-//        asistencia.llenarDatosIniciales();
-//        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(2);
-//        for(Asistencia asi : colAsiPersona){
-//            System.out.println(asi.toString());
-//        }
+        Asistencia asistencia = new Asistencia();
+        asistencia.llenarDatosIniciales();
+        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(2);
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
 
 
         // Autor Jose Cotos
@@ -75,4 +126,5 @@ public class Main {
 //            System.out.println(per.toString());
 //        }
     }
+    
 }
