@@ -44,7 +44,7 @@ public class Asistencia {
     public Asistencia() {
     }
 
-    public void asignarTardanza(){
+    private void asignarTardanza(){
         long tardanza = 0;
         LocalTime horaEntrada = LocalTime.of(8,0);
         LocalTime horaMarcacion;
@@ -67,7 +67,7 @@ public class Asistencia {
         }
     }
 
-    public void asignarHoraExtra(){
+    private void asignarHoraExtra(){
         long hExtra = 0;
         LocalTime horaSalida = LocalTime.of(17,0);
         LocalTime horaMarcacion;
@@ -90,29 +90,75 @@ public class Asistencia {
         }
     }
 
-    public long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+    private long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public LinkedList<Asistencia> buscarTardanzaPersona(int idPersona){
+    public LinkedList<Asistencia> obtenerPersonasMes(int anio, int nroMes){
         LinkedList<Asistencia> colAsiPersona = new LinkedList<Asistencia>();
         for (Asistencia asi : colAsistencia){
-            if (asi.getAsiMinutoTardanza() > 0){
+            if (asi.getAsiFecHoraEntrada().getYear() == anio && asi.getAsiFecHoraEntrada().getMonthValue() == nroMes){
                 colAsiPersona.add(asi);
             }
         }
         return colAsiPersona;
     }
 
-    public LinkedList<Asistencia> buscarHExtraPersona(int idPersona){
-        LinkedList<Asistencia> colAsiPersona = new LinkedList<Asistencia>();
-        for (Asistencia asi : colAsistencia){
-            if (asi.getAsiMinutoHoraExtra() > 0){
-                colAsiPersona.add(asi);
+    public int obtenerTardanzaPersonaTotal(int anio, int nroMes, int idPersona){
+        int dato = 0;
+        LinkedList<Asistencia> colTardanzaPersona = obtenerTardanzaPersona(anio,nroMes,idPersona);
+        for (Asistencia asi : colTardanzaPersona){
+            dato += asi.getAsiMinutoTardanza();
+        }
+        return dato;
+    }
+    public LinkedList<Asistencia> obtenerTardanzaPersona(int anio, int nroMes, int idPersona){
+        LinkedList<Asistencia> colPersonasMes = obtenerPersonasMes(anio, nroMes);
+        LinkedList<Asistencia> colTardanzaPersona = new LinkedList<Asistencia>();
+        for (Asistencia asi : colPersonasMes){
+            if (asi.getIdPersona() == idPersona && asi.getAsiMinutoTardanza() > 0){
+                colTardanzaPersona.add(asi);
             }
         }
-        return colAsiPersona;
+        return colTardanzaPersona;
+    }
+
+
+    public int obtenerHoraExtraPersonaTotal(int anio, int nroMes, int idPersona){
+        int dato = 0;
+        LinkedList<Asistencia> colHoraExtraPersona = obtenerHoraExtraPersona(anio, nroMes, idPersona);
+        for (Asistencia asi : colHoraExtraPersona){
+            dato += asi.getAsiMinutoHoraExtra();
+        }
+        return dato;
+    }
+    public LinkedList<Asistencia> obtenerHoraExtraPersona(int anio, int nroMes, int idPersona){
+        LinkedList<Asistencia> colPersonasMes = obtenerPersonasMes(anio, nroMes);
+        LinkedList<Asistencia> colHoraExtraPersona = new LinkedList<Asistencia>();
+        for (Asistencia asi : colPersonasMes){
+            if (asi.getIdPersona() == idPersona && asi.getAsiMinutoHoraExtra() > 0){
+                colHoraExtraPersona.add(asi);
+            }
+        }
+        return colHoraExtraPersona;
+    }
+
+    public int obtenerAsistenciaPersonaTotal(int anio, int nroMes, int idPersona){
+        int dato = 0;
+        LinkedList<Asistencia> colAsistenciaPersona = obtenerAsistenciaPersona(anio, nroMes, idPersona);
+        dato = colAsistenciaPersona.size();
+        return dato;
+    }
+    public LinkedList<Asistencia> obtenerAsistenciaPersona(int anio, int nroMes, int idPersona){
+        LinkedList<Asistencia> colPersonasMes = obtenerPersonasMes(anio, nroMes);
+        LinkedList<Asistencia> colAsistenciaPersona = new LinkedList<Asistencia>();
+        for (Asistencia asi : colPersonasMes){
+            if (asi.getIdPersona() == idPersona){
+                colAsistenciaPersona.add(asi);
+            }
+        }
+        return colAsistenciaPersona;
     }
 
     public void setFechaHoraEntradaSalida(){
@@ -162,15 +208,6 @@ public class Asistencia {
         return sw;
     }
 
-    public LinkedList<Asistencia> buscarAsistenciaPersona(int idPersona){
-        LinkedList<Asistencia> colAsiPersona = new LinkedList<Asistencia>();
-        for (int i = 0; i < colAsistencia.size(); i++) {
-            if(colAsistencia.get(i).getIdPersona() == idPersona){
-                colAsiPersona.add(colAsistencia.get(i));
-            }
-        }
-        return colAsiPersona;
-    }
 
     public void llenarDatosIniciales(){
         colAsistencia = new LinkedList<Asistencia>();
@@ -183,7 +220,7 @@ public class Asistencia {
         asistencia = new Asistencia(5,LocalDateTime.of(2023,11,8,8,0),LocalDateTime.of(2023,11,8,18,10),0,0,true,0,1); colAsistencia.add(asistencia);
         asistencia = new Asistencia(6,LocalDateTime.of(2023,11,9,8,10),LocalDateTime.of(2023,11,9,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
         asistencia = new Asistencia(7,LocalDateTime.of(2023,11,10,8,20),LocalDateTime.of(2023,11,10,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(8,LocalDateTime.of(2023,11,13,8,0),LocalDateTime.of(2023,11,13,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(8,LocalDateTime.of(2023,11,13,8,0),LocalDateTime.of(2023,11,13,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(9,LocalDateTime.of(2023,11,14,8,0),LocalDateTime.of(2023,11,14,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(10,LocalDateTime.of(2023,11,15,8,0),LocalDateTime.of(2023,11,15,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(11,LocalDateTime.of(2023,11,16,8,0),LocalDateTime.of(2023,11,16,17,0),0,0,false,0,1); colAsistencia.add(asistencia);

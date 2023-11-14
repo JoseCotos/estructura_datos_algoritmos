@@ -3,57 +3,59 @@ import entidades.Asistencia;
 import java.util.LinkedList;
 
 public class Main {
+    private static Asistencia asistencia = new Asistencia();
     public static void main(String[] args) {
-        pruebaCarga();
+        llenarDatosIniciales();
+        pruebaTardanza();
+        pruebaHoraExtra();
+        pruebaAsistencia();
     }
 
-    public static void pruebaListadoPersonaTardanza(){
-        Asistencia asistencia = new Asistencia();
-        asistencia.llenarDatosIniciales();
-        LinkedList<Asistencia> colAsiPersona = asistencia.buscarTardanzaPersona(1);
-        for(Asistencia asi : colAsiPersona){
-            System.out.println(asi.toString());
-        }
-    }
-
-    public static void pruebaListadoPersonaHExtra(){
-        Asistencia asistencia = new Asistencia();
-        asistencia.llenarDatosIniciales();
-        LinkedList<Asistencia> colAsiPersona = asistencia.buscarHExtraPersona(1);
-        for(Asistencia asi : colAsiPersona){
-            System.out.println(asi.toString());
-        }
-    }
-
-    public static void pruebaMarcacionAsistencia(){
-        Asistencia asistencia = new Asistencia();
+    private static void llenarDatosIniciales(){
         asistencia.setFechaHoraEntradaSalida();
         asistencia.llenarDatosIniciales();
 
-        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(1);
+        asistencia.llenarDatosIniciales();
+    }
+
+    public static void pruebaTardanza(){
+        LinkedList<Asistencia> colAsiPersona = asistencia.obtenerTardanzaPersona(2023,11,1);
+        System.out.println("Total minutos tardanza: " + asistencia.obtenerTardanzaPersonaTotal(2023,11,1));
         for(Asistencia asi : colAsiPersona){
             System.out.println(asi.toString());
         }
+        System.out.println();
+    }
 
-        System.out.println("*************************************");
-        System.out.println("*************************************");
-        System.out.println("*************************************");
+    public static void pruebaHoraExtra(){
+        LinkedList<Asistencia> colAsiPersona = asistencia.obtenerHoraExtraPersona(2023,11,1);
+        System.out.println("Total minutos hora extra: " + asistencia.obtenerHoraExtraPersonaTotal(2023,11,1));
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
+        System.out.println();
+    }
+
+    public static void pruebaAsistencia(){
+        LinkedList<Asistencia> colAsiPersona;
+        colAsiPersona = asistencia.obtenerAsistenciaPersona(2023,11,1);
+        System.out.println("Total de asistencias: " + asistencia.obtenerAsistenciaPersonaTotal(2023,11,1));
+        for(Asistencia asi : colAsiPersona){
+            System.out.println(asi.toString());
+        }
+        System.out.println();
 
         asistencia.registrarEntrada(1);
-        LinkedList<Asistencia> colAsiPersona2 = asistencia.buscarAsistenciaPersona(1);
-        for(Asistencia asi : colAsiPersona2){
-            System.out.println(asi.toString());
-        }
-
-        System.out.println("*************************************");
-        System.out.println("*************************************");
-        System.out.println("*************************************");
-
         asistencia.registrarSalida(1);
-        LinkedList<Asistencia> colAsiPersona3 = asistencia.buscarAsistenciaPersona(1);
-        for(Asistencia asi : colAsiPersona3){
+        System.out.println("Registro de marcación entrada y salida");
+        System.out.println();
+
+        colAsiPersona = asistencia.obtenerAsistenciaPersona(2023,11,1);
+        System.out.println("Total de asistencias: " + asistencia.obtenerAsistenciaPersonaTotal(2023,11,1));
+        for(Asistencia asi : colAsiPersona){
             System.out.println(asi.toString());
         }
+        System.out.println();
     }
 
     public static void pruebaCarga(){
@@ -74,15 +76,6 @@ public class Main {
 //        for (LogeoFallido log : colLogeoFallido){
 //            System.out.println(log.toString());
 //        }
-
-
-        Asistencia asistencia = new Asistencia();
-        asistencia.llenarDatosIniciales();
-        LinkedList<Asistencia> colAsiPersona = asistencia.buscarAsistenciaPersona(2);
-        for(Asistencia asi : colAsiPersona){
-            System.out.println(asi.toString());
-        }
-
 
         // Autor Jose Cotos
 //        Feriado feriado = new Feriado();
