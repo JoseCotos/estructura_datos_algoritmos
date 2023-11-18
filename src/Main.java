@@ -1,15 +1,18 @@
 import entidades.Asistencia;
 import entidades.Personal;
+import entidades.Planilla;
 
 import java.util.LinkedList;
 
 public class Main {
     private static Asistencia asistencia = new Asistencia();
+    private static Personal personal = new Personal();
+    private static Planilla planilla = new Planilla();
+
     public static void main(String[] args) {
         llenarDatosIniciales();
-        pruebaTardanza();
-        pruebaHoraExtra();
-        pruebaAsistencia();
+//        pruebaTardanza(); pruebaHoraExtra(); pruebaAsistencia();
+        planilla.generarPlanilla(personal, asistencia, 2023,11);
     }
 
     private static void llenarDatosIniciales(){
@@ -17,6 +20,7 @@ public class Main {
         asistencia.llenarDatosIniciales();
 
         asistencia.llenarDatosIniciales();
+        personal.llenarDatosIniciales();
     }
 
     public static void pruebaTardanza(){

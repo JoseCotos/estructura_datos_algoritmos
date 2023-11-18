@@ -22,6 +22,9 @@ public class Planilla {
     private double plaQuintaCategoria;
     private double plaEsSalud;
 
+    //otras variables
+    private double remuneracionMV = 1025;
+
     private LinkedList<Planilla> colPlanilla;
 
     public Planilla(int idPlanilla, LocalDate plaAlMesAnio, int idPersona, int plaDiasTrabajado, double plaSueldoBasico, double plaAsignacionFamiliar, long plaTotalMinutoHoraExtra, double plaImporteHoraExtra, double plaGratificacion, String plaNombreAFP, double plaAporteFondo, double plaPrimaSeguro, double plaComision, long plaTotalMinutoTardanza, double plaDescuentoTardanza, double plaQuintaCategoria, double plaEsSalud) {
@@ -48,10 +51,29 @@ public class Planilla {
     }
 
 
-    public void generarPlanilla(int anio, int nroMes){
+    public void generarPlanilla(Personal personals, Asistencia asistencias, int anio, int nroMes){
         colPlanilla = new LinkedList<Planilla>();
         Planilla planilla;
 
+        LocalDate tmpPlaAlMesAnio = LocalDate.of(anio,nroMes,1);
+        int tmpDiasTrabajado = 0;
+        double tmpAsiFamiliar = 0;
+        long tmpTotalMinHE = 0;
+        double tmpMontoMinHoraExtra = ((personals.getPerSueldoBasico()/30)/8)/60;
+        double tmpMontoHE = 0;
+        double tmpGratificacion = 0;
+
+
+        for(Personal per : personals.getColPersonal()){
+            tmpDiasTrabajado = asistencias.obtenerAsistenciaPersonaTotal(anio,nroMes,per.getIdPersonal());
+            if (per.getPerNroHijos() > 0) tmpAsiFamiliar = remuneracionMV * 0.10;
+            tmpMontoHE = tmpMontoMinHoraExtra * asistencias.getAsiMinutoHoraExtra();
+            if(nroMes == 7 || nroMes == 12) tmpGratificacion = per.getPerSueldoBasico();
+
+//                    planilla = new Planilla(1,getPlaAlMesAnio(),per.getIdPersonal(),tmpDiasTrabajado,per.getPerSueldoBasico(),tmpAsiFamiliar,tmpTotalMinHE,tmpMontoHE,tmpGratificacion,
+//                            per.getPerNombreAFP(),0,1.84 * per.getPerSueldoBasico(),); colPlanilla.add(planilla);
+
+        }
 
     }
 
