@@ -9,39 +9,19 @@ public class Personal {
     private String perNombre;
     private String perApellido;
     private String perTipoDoc;
-    private int perNroDoc;
-    private int perUsuario;
-    private int perClave;
-    private LocalDate FecRegistro;
-
-    private LocalDate FecIngreso;
-    private LocalDate FecEgreso;
+    private String perNroDoc;
+    private String perUsuario;
+    private String perClave;
+    private LocalDate perFecIngreso;
+    private int perNroHijos;
+    private double perSueldoBasico;
+    private String perCargo;
+    private String perNombreAFP;
 
     private LinkedList<Personal> colPersonal;
 
 
-    public void llenarDatosIniciales(){
-        colPersonal = new LinkedList<Personal>();
-        Personal personal;
-
-        personal = new Personal(1,"José Manuel","Lescano Requena","DNI",76638828,000001,404040,LocalDate.of(2022,10,10), LocalDate.of(2022,10,10),LocalDate.of(2023,10,10)); colPersonal.add(personal);
-        personal = new Personal(2,"Oscar","Salazar Rojas","DNI",76681448,000002,505050,LocalDate.of(2022,11,15), LocalDate.of(2022,11,12),LocalDate.of(2023,11,18)); colPersonal.add(personal);
-        personal = new Personal(3,"Pedro","Ramos Rojas","DNI",76638828,000001,404040,LocalDate.of(2022,10,10), LocalDate.of(2022,10,13),LocalDate.of(2023,7,10)); colPersonal.add(personal);
-        personal = new Personal(4,"Gianfranco","Guanilo Perez","CE",1421282,000002,505050,LocalDate.of(2022,11,15), LocalDate.of(2022,11,14),LocalDate.of(2023,8,20)); colPersonal.add(personal);
-        personal = new Personal(5,"Roberto","Serna remirez","DNI",76638828,000001,704040,LocalDate.of(2022,10,10), LocalDate.of(2022,10,15),LocalDate.of(2023,9,23)); colPersonal.add(personal);
-        personal = new Personal(6,"Rodrigo","Tamallo Escobar","DNI",76681448,000002,605050,LocalDate.of(2022,11,15), LocalDate.of(2022,11,16),LocalDate.of(2023,5,23)); colPersonal.add(personal);
-        personal = new Personal(7,"Esther","Justo Perez","DNI",76638828,000001,804040,LocalDate.of(2022,10,10), LocalDate.of(2022,10,17),LocalDate.of(2023,4,30)); colPersonal.add(personal);
-        personal = new Personal(8,"Olinda","Romero Carranza","DNI",76681448,000002,885050,LocalDate.of(2022,11,15), LocalDate.of(2022,11,18),LocalDate.of(2023,12,20)); colPersonal.add(personal);
-        personal = new Personal(9,"Alvaro","Veliz Figueroa","DNI",76638828,000001,664040,LocalDate.of(2022,10,10), LocalDate.of(2022,10,10),LocalDate.of(2023,11,12)); colPersonal.add(personal);
-        personal = new Personal(10,"Esteban","La Rosa Murguia","DNI",76681448,000002,775050,LocalDate.of(2022,11,15), LocalDate.of(2022,11,12),LocalDate.of(2023,3,19)); colPersonal.add(personal);
-
-
-    }
-
-    public Personal() {
-    }
-
-    public Personal(int idPersonal, String perNombre, String perApellido, String perTipoDoc, int perNroDoc, int perUsuario, int perClave, LocalDate fecRegistro, LocalDate fecIngreso, LocalDate fecEgreso) {
+    public Personal(int idPersonal, String perNombre, String perApellido, String perTipoDoc, String perNroDoc, String perUsuario, String perClave, LocalDate perFecIngreso, int perNroHijos, double perSueldoBasico, String perCargo, String perNombreAFP) {
         this.idPersonal = idPersonal;
         this.perNombre = perNombre;
         this.perApellido = perApellido;
@@ -49,9 +29,30 @@ public class Personal {
         this.perNroDoc = perNroDoc;
         this.perUsuario = perUsuario;
         this.perClave = perClave;
-        FecRegistro = fecRegistro;
-        FecIngreso = fecIngreso;
-        FecEgreso = fecEgreso;
+        this.perFecIngreso = perFecIngreso;
+        this.perNroHijos = perNroHijos;
+        this.perSueldoBasico = perSueldoBasico;
+        this.perCargo = perCargo;
+        this.perNombreAFP = perNombreAFP;
+    }
+
+    public Personal() {
+    }
+
+    public void llenarDatosIniciales(){
+        colPersonal = new LinkedList<Personal>();
+        Personal personal;
+
+        personal = new Personal(1,"Jose","Cotos Conde",          "DNI","76681448","user1" ,"505050",LocalDate.of(2022,11,15),2,5500,"DBA Oracle","Integra"); colPersonal.add(personal);
+        personal = new Personal(2,"Manuel","Lescano Requena",    "DNI","76638828","user2" ,"404040",LocalDate.of(2022,10,10),0,4500,"Programador Senior","Prima"); colPersonal.add(personal);
+        personal = new Personal(3,"Pedro","Ramos Rojas",         "DNI","76638828","user3" ,"404040",LocalDate.of(2022,10,10),2,4500,"Analista Funcional","Prima"); colPersonal.add(personal);
+        personal = new Personal(4,"Gianfranco","Guanilo Perez",  "CE" ,"14212821","user4" ,"505050",LocalDate.of(2022,11,15),0,3500,"Progrmador Semi-Senior","Integra"); colPersonal.add(personal);
+        personal = new Personal(5,"Roberto","Serna remirez",     "DNI","76638828","user5" ,"404040",LocalDate.of(2022,10,10),2,2500,"Soporte Técnico","Prima"); colPersonal.add(personal);
+        personal = new Personal(6,"Rodrigo","Tamallo Escobar",   "DNI","76681448","user6" ,"505050",LocalDate.of(2022,11,15),0,2500,"Soporte Técnico","Integra"); colPersonal.add(personal);
+        personal = new Personal(7,"Esther","Justo Perez",        "DNI","76638828","user7" ,"404040",LocalDate.of(2022,10,10),2,2500,"WebMaster","Prima"); colPersonal.add(personal);
+        personal = new Personal(8,"Olinda","Romero Carranza",    "DNI","76681448","user8" ,"505050",LocalDate.of(2022,11,15),0,2000,"Secretaria Ejecutiva","Integra"); colPersonal.add(personal);
+        personal = new Personal(9,"Alvaro","Veliz Figueroa",     "DNI","76638828","user9" ,"404040",LocalDate.of(2022,10,10),2,1500,"Ejecutiva Ventas","Prima"); colPersonal.add(personal);
+        personal = new Personal(10,"Esteban","Rosa Murguia",     "DNI","76681448","user10","505050",LocalDate.of(2022,11,15),0,1500,"Ejecutiva Ventas","Integra"); colPersonal.add(personal);
     }
 
     public int getIdPersonal() {
@@ -86,52 +87,68 @@ public class Personal {
         this.perTipoDoc = perTipoDoc;
     }
 
-    public int getPerNroDoc() {
+    public String getPerNroDoc() {
         return perNroDoc;
     }
 
-    public void setPerNroDoc(int perNroDoc) {
+    public void setPerNroDoc(String perNroDoc) {
         this.perNroDoc = perNroDoc;
     }
 
-    public int getPerUsuario() {
+    public String getPerUsuario() {
         return perUsuario;
     }
 
-    public void setPerUsuario(int perUsuario) {
+    public void setPerUsuario(String perUsuario) {
         this.perUsuario = perUsuario;
     }
 
-    public int getPerClave() {
+    public String getPerClave() {
         return perClave;
     }
 
-    public void setPerClave(int perClave) {
+    public void setPerClave(String perClave) {
         this.perClave = perClave;
     }
 
-    public LocalDate getFecRegistro() {
-        return FecRegistro;
+    public LocalDate getPerFecIngreso() {
+        return perFecIngreso;
     }
 
-    public void setFecRegistro(LocalDate fecRegistro) {
-        FecRegistro = fecRegistro;
+    public void setPerFecIngreso(LocalDate perFecIngreso) {
+        this.perFecIngreso = perFecIngreso;
     }
 
-    public LocalDate getFecIngreso() {
-        return FecIngreso;
+    public int getPerNroHijos() {
+        return perNroHijos;
     }
 
-    public void setFecIngreso(LocalDate fecIngreso) {
-        FecIngreso = fecIngreso;
+    public void setPerNroHijos(int perNroHijos) {
+        this.perNroHijos = perNroHijos;
     }
 
-    public LocalDate getFecEgreso() {
-        return FecEgreso;
+    public double getPerSueldoBasico() {
+        return perSueldoBasico;
     }
 
-    public void setFecEgreso(LocalDate fecEgreso) {
-        FecEgreso = fecEgreso;
+    public void setPerSueldoBasico(double perSueldoBasico) {
+        this.perSueldoBasico = perSueldoBasico;
+    }
+
+    public String getPerCargo() {
+        return perCargo;
+    }
+
+    public void setPerCargo(String perCargo) {
+        this.perCargo = perCargo;
+    }
+
+    public String getPerNombreAFP() {
+        return perNombreAFP;
+    }
+
+    public void setPerNombreAFP(String perNombreAFP) {
+        this.perNombreAFP = perNombreAFP;
     }
 
     public LinkedList<Personal> getColPersonal() {
@@ -149,13 +166,14 @@ public class Personal {
                 ", perNombre='" + perNombre + '\'' +
                 ", perApellido='" + perApellido + '\'' +
                 ", perTipoDoc='" + perTipoDoc + '\'' +
-                ", perNroDoc=" + perNroDoc +
-                ", perUsuario=" + perUsuario +
-                ", perClave=" + perClave +
-                ", FecRegistro=" + FecRegistro +
-                ", FecIngreso=" + FecIngreso +
-                ", FecEgreso=" + FecEgreso +
-                ", colPersonal=" + colPersonal +
+                ", perNroDoc='" + perNroDoc + '\'' +
+                ", perUsuario='" + perUsuario + '\'' +
+                ", perClave='" + perClave + '\'' +
+                ", perFecIngreso=" + perFecIngreso +
+                ", perNroHijos=" + perNroHijos +
+                ", perSueldoBasico=" + perSueldoBasico +
+                ", perCargo='" + perCargo + '\'' +
+                ", perNombreAFP='" + perNombreAFP + '\'' +
                 '}';
     }
 }

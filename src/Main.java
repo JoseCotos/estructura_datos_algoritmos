@@ -1,4 +1,5 @@
 import entidades.Asistencia;
+import entidades.Personal;
 
 import java.util.LinkedList;
 
