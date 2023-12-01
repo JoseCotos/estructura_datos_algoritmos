@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         llenarDatosIniciales();
 //        pruebaTardanza(); pruebaHoraExtra(); pruebaAsistencia();
-        planilla.generarPlanilla(personal, asistencia, 2023,11);
+        pruebaPlanilla();
     }
 
     private static void llenarDatosIniciales(){
@@ -21,6 +21,13 @@ public class Main {
 
         asistencia.llenarDatosIniciales();
         personal.llenarDatosIniciales();
+    }
+
+    private static void pruebaPlanilla(){
+        planilla.generarPlanilla(personal, asistencia, 2023,11);
+        for (Planilla pla : planilla.getColPlanilla()){
+            System.out.println(pla.toString());
+        }
     }
 
     public static void pruebaTardanza(){

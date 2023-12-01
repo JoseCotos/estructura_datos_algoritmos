@@ -23,8 +23,7 @@ public class Planilla {
     private double plaEsSalud;
 
     //otras variables
-    private double remuneracionMV = 1025;
-    private final double  UIT = 4600;
+    //private double remuneracionMV = 1025;
 
     private LinkedList<Planilla> colPlanilla;
 
@@ -55,18 +54,19 @@ public class Planilla {
     public void generarPlanilla(Personal personal, Asistencia asistencias, int anio, int nroMes){
         colPlanilla = new LinkedList<Planilla>();
         Planilla planilla;
+        double UIT = 4600;
 
         LocalDate tmpPlaAlMesAnio = LocalDate.of(anio,nroMes,1);
-        int tmpDiasTrabajado = 0;
-        double tmpAsiFamiliar = 0;
+        int tmpDiasTrabajado;
+        double tmpAsiFamiliar;
         long tmpTotalMinHE;
         long tmpTotalMinTardanza;
 
-        double tmpMontoHE = 0;
-        double tmpGratificacion = 0;
+        double tmpMontoHE;
+        double tmpGratificacion;
 
         for(Personal per : personal.getColPersonal()){
-            tmpAsiFamiliar = 0; tmpMontoHE = 0; tmpTotalMinHE = 0;
+            tmpAsiFamiliar = 0; tmpMontoHE = 0;
             tmpDiasTrabajado = asistencias.obtenerAsistenciaPersonaTotal(anio,nroMes,per.getIdPersonal());
             if (per.getPerNroHijos() > 0) tmpAsiFamiliar = per.getPerSueldoBasico() * 0.10;
             tmpTotalMinHE = asistencias.obtenerHoraExtraPersonaTotal(anio, nroMes,per.getIdPersonal());
@@ -75,7 +75,7 @@ public class Planilla {
             tmpGratificacion = obtenerGratificacion(nroMes, per.getPerSueldoBasico());
 
             planilla = new Planilla();
-            planilla.setIdPlanilla(colPlanilla.size());;
+            planilla.setIdPlanilla(colPlanilla.size());
             planilla.setPlaAlMesAnio(tmpPlaAlMesAnio);
             planilla.setIdPersona(per.getIdPersonal());
             planilla.setPlaDiasTrabajado(tmpDiasTrabajado);
@@ -90,7 +90,7 @@ public class Planilla {
             planilla.setPlaComision(obtenerComision(per.getPerSueldoBasico()));
             planilla.setPlaTotalMinutoHoraExtra(tmpTotalMinTardanza);
             planilla.setPlaDescuentoTardanza(obtenerDescuento(tmpTotalMinTardanza, per.getPerSueldoBasico()));
-            planilla.setPlaQuintaCategoria(obtenerQuintaCategoria(per.getPerSueldoBasico()));
+            planilla.setPlaQuintaCategoria(obtenerQuintaCategoria(per.getPerSueldoBasico(), UIT));
             planilla.setPlaEsSalud(obtenerEsSalud(per.getPerSueldoBasico()));
 
             colPlanilla.add(planilla);
@@ -99,9 +99,11 @@ public class Planilla {
     }
 
     private double obtenerMontoHE(long totalMinHE, double salario){
-        double tmpMontoMinHoraExtra = 0;
+        double tmpMontoMinHoraExtra, tmpMonto;
         tmpMontoMinHoraExtra = (((salario/30)/8)/60);
-        return tmpMontoMinHoraExtra * totalMinHE;
+        tmpMonto = tmpMontoMinHoraExtra * totalMinHE;;
+        tmpMonto = ((int)(tmpMonto * 100))/100.0;
+        return tmpMonto;
     }
     private double obtenerGratificacion(int nroMes, double salario){
         double tmpGratificacion = 0;
@@ -109,24 +111,28 @@ public class Planilla {
         return tmpGratificacion;
     }
     private double obtenerAporteFondo(double salario){
-        return salario * 0.10;
+        return ((int)(salario * 0.10 * 100))/100.0;
     }
     private double obtenerPrimaSeguro(double salario){
-        return salario * 0.0174;
+        return ((int)(salario * 0.0174 * 100))/100.0;
     }
     private double obtenerComision(double salario){
-        return salario * 0.0160;
+        return ((int)(salario * 0.0160 * 100))/100.0;
     }
     private double obtenerDescuento(long totalMinTardanza, double salario){
-        double tmpMontoMinHoraExtra = 0;
+        double tmpMontoMinHoraExtra, tmpMonto;
         tmpMontoMinHoraExtra = (((salario/30)/8)/60);
-        return tmpMontoMinHoraExtra * totalMinTardanza;
+        tmpMonto = tmpMontoMinHoraExtra * totalMinTardanza;
+        tmpMonto = ((int)tmpMonto)/100.0;
+        return tmpMonto;
     }
-    private double obtenerQuintaCategoria(double salario){
+    private double obtenerQuintaCategoria(double salario, double UIT){
         double rentaBruta, reduccion, rentaNeta, descuento;
         rentaBruta = salario * 14;
         reduccion = 7 * UIT;
         rentaNeta = rentaBruta - reduccion;
+
+        if (rentaNeta < 0) return 0;
 
         if (rentaNeta <= 5 * UIT){
             descuento = 0.08 * rentaNeta;
@@ -139,10 +145,10 @@ public class Planilla {
             descuento += 0.17 * (rentaNeta - 20 * UIT);
         }
 
-        return descuento;
+        return ((int)(descuento * 100))/100.0;
     }
     private double obtenerEsSalud(double salario){
-        return salario * 0.13;
+        return ((int)(salario * 0.13))/100.0;
     }
 
     public int getIdPlanilla() {
