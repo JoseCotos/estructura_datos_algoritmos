@@ -56,7 +56,7 @@ public class Planilla {
         Planilla planilla;
         double UIT = 4600;
 
-        LocalDate tmpPlaAlMesAnio = LocalDate.of(anio,nroMes,1);
+        LocalDate tmpPlaAlMesAnio = LocalDate.of(anio,nroMes,30);
         int tmpDiasTrabajado;
         double tmpAsiFamiliar;
         long tmpTotalMinHE;

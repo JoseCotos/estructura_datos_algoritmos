@@ -2,7 +2,9 @@ import entidades.Asistencia;
 import entidades.Personal;
 import entidades.Planilla;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Main {
     private static Asistencia asistencia = new Asistencia();
@@ -11,10 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         llenarDatosIniciales();
-//        pruebaTardanza(); pruebaHoraExtra(); pruebaAsistencia();
-        pruebaPlanilla();
+        mostrarOpcionesMenu();
     }
-
     private static void llenarDatosIniciales(){
         asistencia.setFechaHoraEntradaSalida();
         asistencia.llenarDatosIniciales();
@@ -22,7 +22,68 @@ public class Main {
         asistencia.llenarDatosIniciales();
         personal.llenarDatosIniciales();
     }
+    private static void mostrarOpcionesMenu(){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS");
+        System.out.println("==================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU PRINCIPAL");
+        System.out.println("0 - Salir");
+        System.out.println("1 - Registro de asistencia");
+        System.out.println("2 - Ingreso al Sistema de Planilla");
+        System.out.println("3 - Ver datos iniciales");
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) return;
+        if (opc == 1) registrarAsistencia();
+        if (opc == 3) pruebaListaAsistencia();
+    }
+
+    private static void registrarAsistencia(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("BIENVENIDO AL REGISTRO DE SU ASISTENCIA");
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println();
+
+        System.out.print("Ingrese su DNI:");
+        String dni = sc.next();
+        if (dni.length() == 1 && dni.compareToIgnoreCase("0") == 0) {
+            mostrarOpcionesMenu();
+            return;
+        }
+
+        if (asistencia.registrarEntrada(dni,personal.getColPersonal())){
+            System.out.println("Su asistencia se registró con éxito!");
+            registrarAsistencia();
+        } else {
+            System.out.println("No se pudo registrar su asistencia, intentelo nuevamente");
+            registrarAsistencia();
+        }
+    }
+
+
+
+
+    /*
+    METODOS DE PRUEBA QUE AYUDAN A PROBAR LA FUNCIONALIDAD
+     */
+    private static void pruebaListaAsistencia(){
+        LinkedList<Asistencia> colAsistencia = asistencia.getColAsistencia();
+        for (Asistencia asi : colAsistencia){
+            System.out.println(asi.toString());
+        }
+        mostrarOpcionesMenu();
+    }
     private static void pruebaPlanilla(){
         planilla.generarPlanilla(personal, asistencia, 2023,11);
         for (Planilla pla : planilla.getColPlanilla()){

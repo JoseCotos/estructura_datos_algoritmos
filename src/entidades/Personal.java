@@ -43,7 +43,7 @@ public class Personal {
         colPersonal = new LinkedList<Personal>();
         Personal personal;
 
-        personal = new Personal(1,"Jose","Cotos Conde",          "DNI","76681448","user1" ,"505050",LocalDate.of(2022,11,15),2,5500,"DBA Oracle","Integra"); colPersonal.add(personal);
+        personal = new Personal(1,"Jose","Cotos Conde",          "DNI","40041899","user1" ,"505050",LocalDate.of(2022,11,15),2,5500,"DBA Oracle","Integra"); colPersonal.add(personal);
         personal = new Personal(2,"Manuel","Lescano Requena",    "DNI","76638828","user2" ,"404040",LocalDate.of(2022,10,10),0,4500,"Programador Senior","Prima"); colPersonal.add(personal);
         personal = new Personal(3,"Pedro","Ramos Rojas",         "DNI","76638828","user3" ,"404040",LocalDate.of(2022,10,10),2,4500,"Analista Funcional","Prima"); colPersonal.add(personal);
         personal = new Personal(4,"Gianfranco","Guanilo Perez",  "CE" ,"14212821","user4" ,"505050",LocalDate.of(2022,11,15),0,3500,"Progrmador Semi-Senior","Integra"); colPersonal.add(personal);
