@@ -40,6 +40,7 @@ public class Main {
 
         if (opc == 0) return;
         if (opc == 1) registrarAsistencia();
+        if (opc == 2) ingresoSistema();
         if (opc == 3) pruebaListaAsistencia();
     }
 
@@ -70,7 +71,81 @@ public class Main {
             registrarAsistencia();
         }
     }
+    private static void ingresoSistema(){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS");
+        System.out.println("==================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println();
+
+        System.out.print("Ingrese su usuario de acceso: ");
+        String usu = sc.next();
+        if (usu.length() == 1 && usu.compareToIgnoreCase("0") == 0) {
+            mostrarOpcionesMenu();
+            return;
+        }
+        System.out.printf("Ingrese su contraseña de acceso: ");
+        String pwd = sc.next();
+
+        Personal tmpPer;
+        tmpPer = personal.obtenerIdPersona(usu,pwd);
+        if (tmpPer == null){
+            System.out.println("Sus datos de accesos no son válidos, intentar nuevamente");
+            ingresoSistema();
+        } else {
+            if (tmpPer.getPerPerfil() == 1){ //administrador
+                menuAdministrador(usu, tmpPer.getPerNombre() + " " + tmpPer.getPerApellido());
+            }
+            if (tmpPer.getPerPerfil() == 2){ //usuario
+                menuUsuario(usu, tmpPer.getPerNombre() + " " + tmpPer.getPerApellido());
+            }
+        }
+    }
+
+    private static void menuAdministrador(String usu, String nomUsuario){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
+        System.out.println("=============================================");
+        System.out.println();
+        System.out.println("Usuario: " + usu + "      :: Apellidos y Nombres: " + nomUsuario);
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println();
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) mostrarOpcionesMenu();
+    }
+
+    private static void menuUsuario(String usu, String nomUsuario){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
+        System.out.println("=============================================");
+        System.out.println();
+        System.out.println("Usuario: " + usu + "      :: Apellidos y Nombres: " + nomUsuario);
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println();
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) mostrarOpcionesMenu();
+    }
 
 
 
