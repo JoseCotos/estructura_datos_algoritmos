@@ -1,6 +1,4 @@
-import entidades.Asistencia;
-import entidades.Personal;
-import entidades.Planilla;
+import entidades.*;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.LinkedList;
@@ -10,6 +8,10 @@ public class Main {
     private static Asistencia asistencia = new Asistencia();
     private static Personal personal = new Personal();
     private static Planilla planilla = new Planilla();
+    private static Feriado feriado = new Feriado();
+    private static LogeoFallido logeoFallido = new LogeoFallido();
+    private static Notificacion notificacion = new Notificacion();
+    private static Solicitud solicitud = new Solicitud();
 
     public static void main(String[] args) {
         llenarDatosIniciales();
@@ -17,10 +19,14 @@ public class Main {
     }
     private static void llenarDatosIniciales(){
         asistencia.setFechaHoraEntradaSalida();
-        asistencia.llenarDatosIniciales();
 
         asistencia.llenarDatosIniciales();
         personal.llenarDatosIniciales();
+        feriado.llenarDatosIniciales();
+        logeoFallido.llenarDatosIniciales();
+        notificacion.llenarDatosIniciales();
+        solicitud.llenarDatosIniciales();
+        planilla.llenarDatosIniciales();
     }
     private static void mostrarOpcionesMenu(){
         Scanner sc = new Scanner(System.in);
@@ -33,7 +39,7 @@ public class Main {
         System.out.println("0 - Salir");
         System.out.println("1 - Registro de asistencia");
         System.out.println("2 - Ingreso al Sistema de Planilla");
-        System.out.println("3 - Ver datos iniciales");
+        System.out.println("3 - Ver datos de tablas");
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
         int opc = sc.nextInt();
@@ -41,7 +47,7 @@ public class Main {
         if (opc == 0) return;
         if (opc == 1) registrarAsistencia();
         if (opc == 2) ingresoSistema();
-        if (opc == 3) pruebaListaAsistencia();
+        if (opc == 3) verDatosTablas();
     }
 
     private static void registrarAsistencia(){
@@ -147,18 +153,113 @@ public class Main {
         if (opc == 0) mostrarOpcionesMenu();
     }
 
+    private static void verDatosTablas(){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("BIENVENIDO A LA VISUALIZACION DE TABLAS");
+        System.out.println("=======================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println("1 - Personal");
+        System.out.println("2 - Asistencia");
+        System.out.println("3 - Feriado");
+        System.out.println("4 - Logeo Fallido");
+        System.out.println("5 - Notificacion");
+        System.out.println("6 - Solicitud");
+        System.out.println("7 - Planilla");
+        System.out.println();
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) mostrarOpcionesMenu();
+        if (opc == 1) verTablaPersonal();
+        if (opc == 2) verTablaAsistencia();
+        if (opc == 3) verTablaFeriado();
+        if (opc == 4) verTablaLogeoFallido();
+        if (opc == 5) verTablaNotificacion();
+        if (opc == 6) verTablaSolicitud();
+        if (opc == 7) verTablaPlanilla();
+    }
+
+    private static void verTablaPersonal(){
+        System.out.println();
+        System.out.println("Tabla: PERSONAL");
+        System.out.println("===============");
+        LinkedList<Personal> colObjeto = personal.getColPersonal();
+        for (Personal obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaSolicitud(){
+        System.out.println();
+        System.out.println("Tabla: SOLICITUD");
+        System.out.println("===============");
+        LinkedList<Solicitud> colObjeto = solicitud.getColSolicitud();
+        for (Solicitud obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaNotificacion(){
+        System.out.println();
+        System.out.println("Tabla: NOTIFICACION");
+        System.out.println("====================");
+        LinkedList<Notificacion> colObjeto = notificacion.getColNotificacion();
+        for (Notificacion obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaFeriado(){
+        System.out.println();
+        System.out.println("Tabla: FERIADO");
+        System.out.println("===============");
+        LinkedList<Feriado> colObjeto = feriado.getColFeriado();
+        for (Feriado obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaLogeoFallido(){
+        System.out.println();
+        System.out.println("Tabla: LOGEO FALLIDO");
+        System.out.println("====================");
+        LinkedList<LogeoFallido> colObjeto = logeoFallido.getColLogeoFallido();
+        for (LogeoFallido obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaPlanilla(){
+        System.out.println();
+        System.out.println("Tabla: PLANILLA");
+        System.out.println("===============");
+        LinkedList<Planilla> colObjeto = planilla.getColPlanilla();
+        for (Planilla obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
+    private static void verTablaAsistencia(){
+        System.out.println();
+        System.out.println("Tabla: ASISTENCIA");
+        System.out.println("==================");
+        LinkedList<Asistencia> colObjeto = asistencia.getColAsistencia();
+        for (Asistencia obj : colObjeto){
+            System.out.println(obj.toString());
+        }
+        verDatosTablas();
+    }
 
     /*
     METODOS DE PRUEBA QUE AYUDAN A PROBAR LA FUNCIONALIDAD
      */
-    private static void pruebaListaAsistencia(){
-        LinkedList<Asistencia> colAsistencia = asistencia.getColAsistencia();
-        for (Asistencia asi : colAsistencia){
-            System.out.println(asi.toString());
-        }
-        mostrarOpcionesMenu();
-    }
+
     private static void pruebaPlanilla(){
         planilla.generarPlanilla(personal, asistencia, 2023,11);
         for (Planilla pla : planilla.getColPlanilla()){

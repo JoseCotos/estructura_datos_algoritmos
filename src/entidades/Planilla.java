@@ -50,6 +50,10 @@ public class Planilla {
     public Planilla() {
     }
 
+    public void llenarDatosIniciales(){
+        colPlanilla = new LinkedList<Planilla>();
+    }
+
 
     public void generarPlanilla(Personal personal, Asistencia asistencias, int anio, int nroMes){
         colPlanilla = new LinkedList<Planilla>();
