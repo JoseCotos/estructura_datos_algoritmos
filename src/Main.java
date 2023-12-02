@@ -50,6 +50,10 @@ public class Main {
         if (opc == 3) verDatosTablas();
     }
 
+    /*
+    OPCION 1 ================================================================================
+    =========================================================================================
+     */
     private static void registrarAsistencia(){
         Scanner sc = new Scanner(System.in);
 
@@ -77,6 +81,11 @@ public class Main {
             registrarAsistencia();
         }
     }
+
+    /*
+    OPCION 2 ================================================================================
+    =========================================================================================
+     */
     private static void ingresoSistema(){
         Scanner sc = new Scanner(System.in);
 
@@ -105,54 +114,92 @@ public class Main {
             ingresoSistema();
         } else {
             if (tmpPer.getPerPerfil() == 1){ //administrador
-                menuAdministrador(usu, tmpPer.getPerNombre() + " " + tmpPer.getPerApellido());
+                menuAdministrador(tmpPer);
             }
             if (tmpPer.getPerPerfil() == 2){ //usuario
-                menuUsuario(usu, tmpPer.getPerNombre() + " " + tmpPer.getPerApellido());
+                menuUsuario(tmpPer);
             }
         }
     }
 
-    private static void menuAdministrador(String usu, String nomUsuario){
+    private static void menuAdministrador(Personal objPersonal){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println();
-        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
-        System.out.println("=============================================");
-        System.out.println();
-        System.out.println("Usuario: " + usu + "      :: Apellidos y Nombres: " + nomUsuario);
-        System.out.println();
+        cabeceraIngresoSistema(objPersonal);
         System.out.println("OPCIONES DE MENU");
         System.out.println("----------------");
         System.out.println("0 - Regresar");
+        System.out.println("1 - Atender Solicitudes");
+        System.out.println("2 - Revisar Personal");
+        System.out.println("3 - Emitir Boletas");
         System.out.println();
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
         int opc = sc.nextInt();
 
         if (opc == 0) mostrarOpcionesMenu();
+        if (opc == 1) atenderSolicitud();
+        if (opc == 2) revisarPersonal();
+        if (opc == 3) emitirBoleta();
+    }
+    private static void atenderSolicitud(){
+
+    }
+    private static void revisarPersonal(){
+
+    }
+    private static void emitirBoleta(){
+
     }
 
-    private static void menuUsuario(String usu, String nomUsuario){
+    private static void menuUsuario(Personal objPersonal){
         Scanner sc = new Scanner(System.in);
 
-        System.out.println();
-        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
-        System.out.println("=============================================");
-        System.out.println();
-        System.out.println("Usuario: " + usu + "      :: Apellidos y Nombres: " + nomUsuario);
-        System.out.println();
+        cabeceraIngresoSistema(objPersonal);
         System.out.println("OPCIONES DE MENU");
         System.out.println("----------------");
         System.out.println("0 - Regresar");
+        System.out.println("1 - Registrar Solicitud");
+        System.out.println("2 - Ver Asistencia");
+        System.out.println("3 - Ver Boleta de Pago");
         System.out.println();
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
         int opc = sc.nextInt();
 
         if (opc == 0) mostrarOpcionesMenu();
+        if (opc == 1) registrarSolicitud(objPersonal);
+        if (opc == 2) verAsistencia(objPersonal);
+        if (opc == 3) verBoletaPago(objPersonal);
+
+    }
+    private static void registrarSolicitud(Personal objPersonal){
+
+    }
+    private static void verAsistencia(Personal objPersonal){
+
+    }
+    private static void verBoletaPago(Personal objPersonal){
+
     }
 
+    private static void cabeceraIngresoSistema(Personal objPersonal){
+        String perfil = "";
+        if (objPersonal.getPerPerfil() == 1) perfil = "ADMINISTRADOR";
+        if (objPersonal.getPerPerfil() == 1) perfil = "USUARIO";
+
+        System.out.println();
+        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
+        System.out.println("=============================================");
+        System.out.println(perfil + " ::: " + objPersonal.getPerUsuario() + " ::: " +
+                objPersonal.getPerNombre() + " " + objPersonal.getPerApellido());
+        System.out.println();
+    }
+
+    /*
+    OPCION 3 ================================================================================
+    =========================================================================================
+     */
     private static void verDatosTablas(){
         Scanner sc = new Scanner(System.in);
 
