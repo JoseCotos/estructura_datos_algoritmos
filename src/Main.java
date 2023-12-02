@@ -73,7 +73,7 @@ public class Main {
             return;
         }
 
-        if (asistencia.registrarEntrada(dni,personal.getColPersonal())){
+        if (asistencia.registrarAsistencia(dni,personal.getColPersonal())){
             System.out.println("Su asistencia se registró con éxito!");
             registrarAsistencia();
         } else {

@@ -170,7 +170,7 @@ public class Asistencia {
         fecHoraSalida = LocalDateTime.of(fechaActual,horaSalida);
     }
 
-    public boolean registrarEntrada(String dni, LinkedList<Personal> colPersonal){
+    public boolean registrarAsistencia(String dni, LinkedList<Personal> colPersonal){
         boolean sw = false;
 
         int idPersona = 0;
@@ -184,24 +184,45 @@ public class Asistencia {
         System.out.println(idPersona);
         if (!sw) return sw;
 
-        DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
-        LocalDate fechaActual = LocalDate.now();
+        sw = registrarEntrada(idPersona);
+        if (!sw){
+            sw = registrarSalida(idPersona);
+        }
 
-        for (Asistencia asi : colAsistencia){
-            if (asi.getIdPersona() == idPersona){
-                if (asi.getAsiFecHoraEntrada().format(isoFecha).equals(fechaActual.format(isoFecha))){
-                    sw = false;
-                    break;
-                }
-            }
-        }
-        if (sw){
-            int idAsi = colAsistencia.get(colAsistencia.size() - 1).idAsistencia + 1;
-            Asistencia asiNew = new Asistencia(idAsi,fecHoraEntrada,idPersona);
-            colAsistencia.add(asiNew);
-        }
-        return sw;
+        return  sw;
     }
+//    public boolean registrarEntrada(String dni, LinkedList<Personal> colPersonal){
+//        boolean sw = false;
+//
+//        int idPersona = 0;
+//        for (Personal per : colPersonal){
+//            if (per.getPerNroDoc().compareToIgnoreCase(dni) == 0){
+//                idPersona = per.getIdPersonal();
+//                sw = true;
+//                break;
+//            }
+//        }
+//        System.out.println(idPersona);
+//        if (!sw) return sw;
+//
+//        DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
+//        LocalDate fechaActual = LocalDate.now();
+//
+//        for (Asistencia asi : colAsistencia){
+//            if (asi.getIdPersona() == idPersona){
+//                if (asi.getAsiFecHoraEntrada().format(isoFecha).equals(fechaActual.format(isoFecha))){
+//                    sw = false;
+//                    break;
+//                }
+//            }
+//        }
+//        if (sw){
+//            int idAsi = colAsistencia.get(colAsistencia.size() - 1).idAsistencia + 1;
+//            Asistencia asiNew = new Asistencia(idAsi,fecHoraEntrada,idPersona);
+//            colAsistencia.add(asiNew);
+//        }
+//        return sw;
+//    }
 
     public boolean registrarEntrada(int idPersona){
         boolean sw = true;
