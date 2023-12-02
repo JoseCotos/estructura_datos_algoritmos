@@ -186,7 +186,7 @@ public class Main {
     private static void cabeceraIngresoSistema(Personal objPersonal){
         String perfil = "";
         if (objPersonal.getPerPerfil() == 1) perfil = "ADMINISTRADOR";
-        if (objPersonal.getPerPerfil() == 1) perfil = "USUARIO";
+        if (objPersonal.getPerPerfil() == 2) perfil = "USUARIO";
 
         System.out.println();
         System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS (INTRANET)");
