@@ -1,6 +1,8 @@
 import entidades.*;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -90,8 +92,8 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         System.out.println();
-        System.out.println("BIENVENIDO AL SISTEMA DE PLANILLAS");
-        System.out.println("==================================");
+        System.out.println("ACCESO AL SISTEMA");
+        System.out.println("==================");
         System.out.println();
         System.out.println("OPCIONES DE MENU");
         System.out.println("----------------");
@@ -129,7 +131,7 @@ public class Main {
         System.out.println("OPCIONES DE MENU");
         System.out.println("----------------");
         System.out.println("0 - Regresar");
-        System.out.println("1 - Atender Solicitudes");
+        System.out.println("1 - Revisar Solicitudes");
         System.out.println("2 - Revisar Personal");
         System.out.println("3 - Emitir Boletas");
         System.out.println();
@@ -138,13 +140,71 @@ public class Main {
         int opc = sc.nextInt();
 
         if (opc == 0) mostrarOpcionesMenu();
-        if (opc == 1) atenderSolicitud();
+        if (opc == 1) revisarSolicitud(objPersonal);
         if (opc == 2) revisarPersonal();
         if (opc == 3) emitirBoleta();
     }
-    private static void atenderSolicitud(){
+    private static void revisarSolicitud(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("BIENVENIDO A LAS SOLICITUDES");
+        System.out.println("=============================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU PRINCIPAL");
+        System.out.println("0 - Retornar");
+        System.out.println("1 - Atender solicitudes pendientes");
+        System.out.println("2 - Ver solicitudes atendidos");
+        System.out.println("3 - Ver solicitudes rechazados");
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) menuAdministrador(objPersonal);
+        if (opc == 1) atenderSolicitudesPendientes(objPersonal);
+        if (opc == 2) {verSolicitudes(2); revisarSolicitud(objPersonal);}
+        if (opc == 3) {verSolicitudes(3); revisarSolicitud(objPersonal);}
     }
+    public static void atenderSolicitudesPendientes(Personal objpersonal){
+        verSolicitudes(1);
+        if (solicitud.obtenerSolicitudes(1).size() == 0) {revisarSolicitud(objpersonal); return;}
+
+        Scanner sc = new Scanner(System.in);
+
+        int nroSol = 0, condicion = 0;
+        try {
+            System.out.print("Ingrese el Nro Solicitud a atender: ");
+            nroSol = sc.nextInt();
+            System.out.print("Ingrese 1 para aceptar y 0 para rechazar la solicitud: ");
+            condicion = sc.nextInt();
+
+            if (nroSol == 0){
+                revisarSolicitud(objpersonal);
+            } else {
+                if (solicitud.atenderSolicitud(nroSol, condicion)){
+                    System.out.println("Se atendió la solicitud: " + nroSol);
+                } else {
+                    System.out.println("Error, no se atendió intente nuevamente");
+                }
+                atenderSolicitudesPendientes(objpersonal);
+            }
+
+        } catch (Exception ex){
+            System.out.println("Error, ingrese nuevamente el Nro Solicitud");
+            atenderSolicitudesPendientes(objpersonal);
+        }
+    }
+    private static void verSolicitudes(int tipo){
+        LinkedList<Solicitud> tmpSol = new LinkedList<Solicitud>();
+        tmpSol = solicitud.obtenerSolicitudes(tipo);// tipo:1 -> Pendiente
+        System.out.println("Nro Solicitud :: Fecha Solicitud :: Descripcion");
+        System.out.println("=======================================================================");
+        for (Solicitud sol : tmpSol){
+            System.out.println(sol.getIdSolicitud() + "          :: " + sol.getSolFecha() + " :: " + sol.getSolDescripcion());
+        }
+        System.out.println();
+    }
+
     private static void revisarPersonal(){
 
     }
@@ -174,10 +234,71 @@ public class Main {
 
     }
     private static void registrarSolicitud(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("REGISTRO DE SOLICITUD DE HORA EXTRA");
+        System.out.println("===================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("----------------");
+        System.out.println("0 - Regresar");
+        System.out.println(); // public Solicitud(int idSolicitud, LocalDate solFecha, String solDescripcion, int idPersona) {
+
+        System.out.print("Ingresar para que fecha desea asistir extraordinariamente (DD/MM/YYYY): ");
+        String fecha = sc.next();
+        System.out.print("Ingrese el motivo de asistir extraordinariamente: ");
+        String desc = sc.next();
+
+        LocalDate fechaHE = LocalDate.now();
+        try {
+            System.out.println(fecha.substring(6) + " :: " + fecha.substring(3,5) + " :: " + fecha.substring(0,2));
+            fechaHE = LocalDate.of(Integer.parseInt(fecha.substring(6)), Integer.parseInt(fecha.substring(3,5)),
+                    Integer.parseInt(fecha.substring(0,2)));
+
+            Solicitud sol = new Solicitud(solicitud.getColSolicitud().size() + 1, fechaHE, desc, objPersonal.getIdPersonal());
+            solicitud.getColSolicitud().add(sol);
+            System.out.println("Solicitud ingresado exitosamente");
+
+            menuUsuario(objPersonal);
+        } catch (Exception ex){
+            System.out.println("Formato de fecha mal ingresada, intente nuevamente");
+            registrarSolicitud(objPersonal);
+        }
     }
     private static void verAsistencia(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("REPORTE DE ASISTENCIA");
+        System.out.println("======================");
+        System.out.println();
+
+        int anio = 0, nroMes = 0;
+        try {
+            System.out.print("Ingrese un año: ");
+            anio = sc.nextInt();
+            System.out.print("Ingrese un mes: ");
+            nroMes = sc.nextInt();
+        } catch (Exception ex){
+            System.out.println("Error ingresando datos, intente nuevamente");
+            verAsistencia(objPersonal);
+        }
+
+        LinkedList<Asistencia> tmpAsi = asistencia.obtenerAsistenciaPersona(anio, nroMes, objPersonal.getIdPersonal());
+
+        System.out.println();
+        System.out.println("Fecha de Impresión: " + LocalDateTime.now());
+        System.out.println("HORA ENTRADA     ::: HORA SALIDA");
+        System.out.println("======================================");
+        for(Asistencia asi : tmpAsi){
+            System.out.println(asi.getAsiFecHoraEntrada() + " ::: " + asi.getAsiFecHoraSalida());
+        }
+        System.out.println("======================================");
+        System.out.println("Impreso por el área de TIC");
+
+
+        menuUsuario(objPersonal);
     }
     private static void verBoletaPago(Personal objPersonal){
 

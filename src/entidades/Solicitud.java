@@ -9,34 +9,88 @@ public class Solicitud {
     private String solTipo;
     private LocalDate solFecha;
     private String solDescripcion;
-    private String solEstado;
+    private String solEstado; // PENDIENTE, ACEPTADO, RECHAZADO
+    private int idPersona;
+    private LocalDate solFechaRegistro;
 
     private LinkedList<Solicitud> colSolicitud;
 
+    private final String ESTADO_PENDIENTE = "PENDIENTE";
+    private final String ESTADO_ACEPTADO = "ACEPTADO";
+    private final String ESTADO_RECHAZADO = "RECHAZADO";
+
     public Solicitud() {
     }
-
 
     public void llenarDatosIniciales(){
         colSolicitud = new LinkedList<Solicitud>();
         Solicitud solicitud;
 
-        solicitud = new Solicitud(1,"Justificacion de tarzanda",LocalDate.of(2022,10,10),"Cita médica","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(2,"Justificacion de falta",LocalDate.of(2022,11,10),"Descanso médico","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(3,"Justificacion de tarzanda",LocalDate.of(2022,11,11),"Cita médica","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(4,"Justificacion de falta",LocalDate.of(2022,11,12),"Descanso médico","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(5,"Justificacion de tarzanda",LocalDate.of(2022,11,13),"Cita médica","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(6,"Justificacion de falta",LocalDate.of(2022,11,14),"Descanso médico","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(7,"Justificacion de tarzanda",LocalDate.of(2022,11,15),"Cita médica","Aceptado"); colSolicitud.add(solicitud);
-        solicitud = new Solicitud(8,"Justificacion de falta",LocalDate.of(2022,11,16),"Descanso médico","Aceptado"); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(1,"HE",LocalDate.of(2023,11,13),"Informe para administracion","ACEPTADO",1, LocalDate.of(2023,11,13)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(2,"HE",LocalDate.of(2023,11,14),"Reporte para tesoreria","ACEPTADO",1, LocalDate.of(2023,11,14)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(3,"HE",LocalDate.of(2023,11,15),"informe para contabilidad","PENDIENTE",1, LocalDate.of(2023,11,15)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(4,"HE",LocalDate.of(2023,11,16),"Trabajo pendiente","ACEPTADO",1, LocalDate.of(2023,11,16)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(5,"HE",LocalDate.of(2023,11,13),"Informe para TIC","ACEPTADO",2, LocalDate.of(2023,11,13)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(6,"HE",LocalDate.of(2023,11,14),"Reporte para tesoreria","PENDIENTE",2, LocalDate.of(2023,11,14)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(7,"HE",LocalDate.of(2023,11,13),"Informe para eventos","ACEPTADO",3, LocalDate.of(2023,11,13)); colSolicitud.add(solicitud);
+        solicitud = new Solicitud(8,"HE",LocalDate.of(2023,11,14),"Participar en el evento","RECHAZADO",3, LocalDate.of(2023,11,14)); colSolicitud.add(solicitud);
     }
 
-    public Solicitud(int idSolicitud, String solTipo, LocalDate solFecha, String solDescripcion, String solEstado) {
+    public Solicitud(int idSolicitud, String solTipo, LocalDate solFecha, String solDescripcion, String solEstado, int idPersona, LocalDate solFechaRegistro) {
         this.idSolicitud = idSolicitud;
         this.solTipo = solTipo;
         this.solFecha = solFecha;
         this.solDescripcion = solDescripcion;
         this.solEstado = solEstado;
+        this.idPersona = idPersona;
+        this.solFechaRegistro = solFechaRegistro;
+    }
+
+    public Solicitud(int idSolicitud, LocalDate solFecha, String solDescripcion, int idPersona) {
+        this.idSolicitud = idSolicitud;
+        this.solFecha = solFecha;
+        this.solDescripcion = solDescripcion;
+        this.idPersona = idPersona;
+        this.solTipo = "HE";
+        this.solEstado = ESTADO_PENDIENTE;
+        this.solFechaRegistro = LocalDate.now();
+    }
+
+    /**
+     *
+     * @param tipo
+     *      1: Pendientes
+     *      2: Atendidos
+     *      3: Rechazados
+     * @return
+     */
+    public LinkedList<Solicitud> obtenerSolicitudes(int tipo){
+        LinkedList<Solicitud> tmpSol = new LinkedList<Solicitud>();
+        for (Solicitud sol : getColSolicitud()){
+            if (tipo == 1 && sol.getSolEstado().equalsIgnoreCase(ESTADO_PENDIENTE)){
+                tmpSol.add(sol);
+            } else if (tipo == 2 && sol.getSolEstado().equalsIgnoreCase(ESTADO_ACEPTADO)){
+                tmpSol.add(sol);
+            } else if (tipo == 3 && sol.getSolEstado().equalsIgnoreCase(ESTADO_RECHAZADO)){
+                tmpSol.add(sol);
+            }
+        }
+
+        return tmpSol;
+    }
+
+    public boolean atenderSolicitud(int nroSolicitud, int condicion){
+        boolean sw = false;
+        String estado = "";
+        if (condicion == 1) estado = ESTADO_ACEPTADO; else estado = ESTADO_RECHAZADO;
+        for (Solicitud sol : getColSolicitud()){
+            if (sol.getIdSolicitud() == nroSolicitud && sol.getSolEstado().equalsIgnoreCase(ESTADO_PENDIENTE)){
+                sol.setSolEstado(estado);
+                sw = true;
+                break;
+            }
+        }
+        return sw;
     }
 
     public int getIdSolicitud() {
@@ -87,6 +141,14 @@ public class Solicitud {
         this.colSolicitud = colSolicitud;
     }
 
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
     @Override
     public String toString() {
         return "Solicitud{" +
@@ -95,6 +157,8 @@ public class Solicitud {
                 ", solFecha=" + solFecha +
                 ", solDescripcion='" + solDescripcion + '\'' +
                 ", solEstado='" + solEstado + '\'' +
+                ", idPersona=" + idPersona +
+                ", solFechaRegistro=" + solFechaRegistro +
                 '}';
     }
 }

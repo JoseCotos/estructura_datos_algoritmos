@@ -181,7 +181,7 @@ public class Asistencia {
                 break;
             }
         }
-        System.out.println(idPersona);
+
         if (!sw) return sw;
 
         sw = registrarEntrada(idPersona);
@@ -191,38 +191,6 @@ public class Asistencia {
 
         return  sw;
     }
-//    public boolean registrarEntrada(String dni, LinkedList<Personal> colPersonal){
-//        boolean sw = false;
-//
-//        int idPersona = 0;
-//        for (Personal per : colPersonal){
-//            if (per.getPerNroDoc().compareToIgnoreCase(dni) == 0){
-//                idPersona = per.getIdPersonal();
-//                sw = true;
-//                break;
-//            }
-//        }
-//        System.out.println(idPersona);
-//        if (!sw) return sw;
-//
-//        DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
-//        LocalDate fechaActual = LocalDate.now();
-//
-//        for (Asistencia asi : colAsistencia){
-//            if (asi.getIdPersona() == idPersona){
-//                if (asi.getAsiFecHoraEntrada().format(isoFecha).equals(fechaActual.format(isoFecha))){
-//                    sw = false;
-//                    break;
-//                }
-//            }
-//        }
-//        if (sw){
-//            int idAsi = colAsistencia.get(colAsistencia.size() - 1).idAsistencia + 1;
-//            Asistencia asiNew = new Asistencia(idAsi,fecHoraEntrada,idPersona);
-//            colAsistencia.add(asiNew);
-//        }
-//        return sw;
-//    }
 
     public boolean registrarEntrada(int idPersona){
         boolean sw = true;
@@ -294,11 +262,11 @@ public class Asistencia {
         asistencia = new Asistencia(25,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
         asistencia = new Asistencia(26,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
         asistencia = new Asistencia(27,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(28,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(29,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(30,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(31,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(32,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(28,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(29,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(30,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(31,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(32,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,1); colAsistencia.add(asistencia);
         asistencia = new Asistencia(33,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
         asistencia = new Asistencia(34,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
         asistencia = new Asistencia(35,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
@@ -321,16 +289,16 @@ public class Asistencia {
         asistencia = new Asistencia(52,LocalDateTime.of(2023,11,29,8,0),LocalDateTime.of(2023,11,29,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
         asistencia = new Asistencia(53,LocalDateTime.of(2023,11,30,8,0),LocalDateTime.of(2023,11,30,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
         asistencia = new Asistencia(54,LocalDateTime.of(2023,12,1,8,0),LocalDateTime.of(2023,12,1,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(55,LocalDateTime.of(2023,12,4,8,0),LocalDateTime.of(2023,12,4,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(56,LocalDateTime.of(2023,12,5,8,0),LocalDateTime.of(2023,12,5,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(57,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(58,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(59,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(60,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(61,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(62,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(63,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(64,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(55,LocalDateTime.of(2023,12,4,8,0),LocalDateTime.of(2023,12,4,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(56,LocalDateTime.of(2023,12,5,8,0),LocalDateTime.of(2023,12,5,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(57,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(58,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(59,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(60,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(61,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(62,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(63,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(64,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,2); colAsistencia.add(asistencia);
         asistencia = new Asistencia(65,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
         asistencia = new Asistencia(66,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
         asistencia = new Asistencia(67,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
@@ -358,11 +326,11 @@ public class Asistencia {
         asistencia = new Asistencia(89,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
         asistencia = new Asistencia(90,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
         asistencia = new Asistencia(91,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(92,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(93,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(94,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(95,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(96,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(92,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(93,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(94,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(95,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(96,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,3); colAsistencia.add(asistencia);
         asistencia = new Asistencia(97,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
         asistencia = new Asistencia(98,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
         asistencia = new Asistencia(99,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
@@ -390,11 +358,11 @@ public class Asistencia {
         asistencia = new Asistencia(121,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
         asistencia = new Asistencia(122,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
         asistencia = new Asistencia(123,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(124,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(125,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(126,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(127,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(128,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(124,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(125,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(126,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(127,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(128,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,4); colAsistencia.add(asistencia);
         asistencia = new Asistencia(129,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
         asistencia = new Asistencia(130,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
         asistencia = new Asistencia(131,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
@@ -422,11 +390,11 @@ public class Asistencia {
         asistencia = new Asistencia(153,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
         asistencia = new Asistencia(154,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
         asistencia = new Asistencia(155,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(156,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(157,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(158,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(159,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(160,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(156,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(157,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(158,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(159,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(160,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,5); colAsistencia.add(asistencia);
         asistencia = new Asistencia(161,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
         asistencia = new Asistencia(162,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
         asistencia = new Asistencia(163,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
@@ -454,11 +422,11 @@ public class Asistencia {
         asistencia = new Asistencia(185,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
         asistencia = new Asistencia(186,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
         asistencia = new Asistencia(187,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(188,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(189,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(190,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(191,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(192,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(188,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(189,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(190,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(191,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(192,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,6); colAsistencia.add(asistencia);
         asistencia = new Asistencia(193,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
         asistencia = new Asistencia(194,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
         asistencia = new Asistencia(195,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
@@ -486,11 +454,11 @@ public class Asistencia {
         asistencia = new Asistencia(217,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
         asistencia = new Asistencia(218,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
         asistencia = new Asistencia(219,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(220,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(221,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(222,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(223,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(224,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(220,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(221,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(222,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(223,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(224,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,7); colAsistencia.add(asistencia);
         asistencia = new Asistencia(225,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
         asistencia = new Asistencia(226,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
         asistencia = new Asistencia(227,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
@@ -518,11 +486,11 @@ public class Asistencia {
         asistencia = new Asistencia(249,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
         asistencia = new Asistencia(250,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
         asistencia = new Asistencia(251,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(252,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(253,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(254,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(255,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(256,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(252,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(253,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(254,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(255,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(256,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,8); colAsistencia.add(asistencia);
         asistencia = new Asistencia(257,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
         asistencia = new Asistencia(258,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
         asistencia = new Asistencia(259,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
@@ -550,11 +518,11 @@ public class Asistencia {
         asistencia = new Asistencia(281,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
         asistencia = new Asistencia(282,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
         asistencia = new Asistencia(283,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(284,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(285,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(286,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(287,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
-        asistencia = new Asistencia(288,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(284,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(285,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(286,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(287,LocalDateTime.of(2023,12,14,8,0),LocalDateTime.of(2023,12,14,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
+//        asistencia = new Asistencia(288,LocalDateTime.of(2023,12,15,8,0),LocalDateTime.of(2023,12,15,17,0),0,0,false,0,9); colAsistencia.add(asistencia);
         asistencia = new Asistencia(289,LocalDateTime.of(2023,11,2,8,0),LocalDateTime.of(2023,11,2,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
         asistencia = new Asistencia(290,LocalDateTime.of(2023,11,3,8,0),LocalDateTime.of(2023,11,3,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
         asistencia = new Asistencia(291,LocalDateTime.of(2023,11,6,8,0),LocalDateTime.of(2023,11,6,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
@@ -577,11 +545,11 @@ public class Asistencia {
         asistencia = new Asistencia(308,LocalDateTime.of(2023,11,29,8,0),LocalDateTime.of(2023,11,29,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
         asistencia = new Asistencia(309,LocalDateTime.of(2023,11,30,8,0),LocalDateTime.of(2023,11,30,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
         asistencia = new Asistencia(310,LocalDateTime.of(2023,12,1,8,0),LocalDateTime.of(2023,12,1,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(311,LocalDateTime.of(2023,12,4,8,0),LocalDateTime.of(2023,12,4,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(312,LocalDateTime.of(2023,12,5,8,0),LocalDateTime.of(2023,12,5,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(313,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(314,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
-//        asistencia = new Asistencia(315,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(311,LocalDateTime.of(2023,12,4,8,0),LocalDateTime.of(2023,12,4,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(312,LocalDateTime.of(2023,12,5,8,0),LocalDateTime.of(2023,12,5,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(313,LocalDateTime.of(2023,12,6,8,0),LocalDateTime.of(2023,12,6,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(314,LocalDateTime.of(2023,12,7,8,0),LocalDateTime.of(2023,12,7,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
+        asistencia = new Asistencia(315,LocalDateTime.of(2023,12,8,8,0),LocalDateTime.of(2023,12,8,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(316,LocalDateTime.of(2023,12,11,8,0),LocalDateTime.of(2023,12,11,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(317,LocalDateTime.of(2023,12,12,8,0),LocalDateTime.of(2023,12,12,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
 //        asistencia = new Asistencia(318,LocalDateTime.of(2023,12,13,8,0),LocalDateTime.of(2023,12,13,17,0),0,0,false,0,10); colAsistencia.add(asistencia);
