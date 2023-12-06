@@ -46,9 +46,9 @@ public class Personal {
         Personal personal;
 
         personal = new Personal(1,"Jose","Cotos Conde",          "DNI","40041899",1,"user1" ,"505050",LocalDate.of(2022,11,15),2,5500,"DBA Oracle","Integra"); colPersonal.add(personal);
-        personal = new Personal(2,"Manuel","Lescano Requena",    "DNI","76638828",2,"user2" ,"404040",LocalDate.of(2022,10,10),0,4500,"Programador Senior","Prima"); colPersonal.add(personal);
-        personal = new Personal(3,"Pedro","Ramos Rojas",         "DNI","76638828",2,"user3" ,"404040",LocalDate.of(2022,10,10),2,4500,"Analista Funcional","Prima"); colPersonal.add(personal);
-        personal = new Personal(4,"Gianfranco","Guanilo Perez",  "CE" ,"14212821",2,"user4" ,"505050",LocalDate.of(2022,11,15),0,3500,"Progrmador Semi-Senior","Integra"); colPersonal.add(personal);
+        personal = new Personal(2,"Manuel","Lescano Requena",    "DNI","72363959",2,"user2" ,"404040",LocalDate.of(2022,10,10),0,4500,"Programador Senior","Prima"); colPersonal.add(personal);
+        personal = new Personal(3,"Pedro","Ramos Rojas",         "DNI","76681200",2,"user3" ,"404040",LocalDate.of(2022,10,10),2,4500,"Analista Funcional","Prima"); colPersonal.add(personal);
+        personal = new Personal(4,"Gianfranco","Guanilo Perez",  "CE" ,"46712896",2,"user4" ,"505050",LocalDate.of(2022,11,15),0,3500,"Progrmador Semi-Senior","Integra"); colPersonal.add(personal);
         personal = new Personal(5,"Roberto","Serna remirez",     "DNI","76638828",2,"user5" ,"404040",LocalDate.of(2022,10,10),2,2500,"Soporte Técnico","Prima"); colPersonal.add(personal);
         personal = new Personal(6,"Rodrigo","Tamallo Escobar",   "DNI","76681448",2,"user6" ,"505050",LocalDate.of(2022,11,15),0,2500,"Soporte Técnico","Integra"); colPersonal.add(personal);
         personal = new Personal(7,"Esther","Justo Perez",        "DNI","76638828",2,"user7" ,"404040",LocalDate.of(2022,10,10),2,2500,"WebMaster","Prima"); colPersonal.add(personal);

@@ -244,7 +244,7 @@ public class Main {
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
         int opc = sc.nextInt();
-        System.out.print("Ingrese el numero de mes a consultar?");
+        System.out.print("Ingrese el numero de mes a consultar?: ");
         int nroMes = sc.nextInt();
 
         if (opc == 0) revisarPersonal(objPersonal);
