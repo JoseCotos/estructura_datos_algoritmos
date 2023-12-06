@@ -141,7 +141,7 @@ public class Main {
 
         if (opc == 0) mostrarOpcionesMenu();
         if (opc == 1) revisarSolicitud(objPersonal);
-        if (opc == 2) revisarPersonal();
+        if (opc == 2) revisarPersonal(objPersonal);
         if (opc == 3) emitirBoleta();
     }
     private static void revisarSolicitud(Personal objPersonal){
@@ -151,7 +151,8 @@ public class Main {
         System.out.println("BIENVENIDO A LAS SOLICITUDES");
         System.out.println("=============================");
         System.out.println();
-        System.out.println("OPCIONES DE MENU PRINCIPAL");
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("-----------------");
         System.out.println("0 - Retornar");
         System.out.println("1 - Atender solicitudes pendientes");
         System.out.println("2 - Ver solicitudes atendidos");
@@ -205,9 +206,124 @@ public class Main {
         System.out.println();
     }
 
-    private static void revisarPersonal(){
+    private static void revisarPersonal(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("BIENVENIDO A LA GESTION DE PERSONAL");
+        System.out.println("====================================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("-----------------");
+        System.out.println("0 - Retornar");
+        System.out.println("1 - Listar al Personal");
+        System.out.println("2 - Registro de nuevo Personal");
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) menuAdministrador(objPersonal);
+        if (opc == 1) listarPersonal(objPersonal);
+        if (opc == 2) registroPersonal(objPersonal);
+    }
+    private static void listarPersonal(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("-----------------");
+        System.out.println("0 - Retornar");
+        System.out.println("1 - Listar asistencia de todo el Personal");
+        System.out.println("2 - Listar asistencia del personal con tardanza del mes actual");
+        System.out.println("3 - Listar asistencia del personal con horas extras del mes actual");
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+        System.out.print("Ingrese el numero de mes a consultar?");
+        int nroMes = sc.nextInt();
+
+        if (opc == 0) revisarPersonal(objPersonal);
+        if (opc == 1) listarTodoPersonal(objPersonal, 1, nroMes);
+        if (opc == 2) listarTodoPersonal(objPersonal, 2, nroMes);
+        if (opc == 3) listarTodoPersonal(objPersonal, 3, nroMes);
+    }
+    private static void listarTodoPersonal(Personal objPersonal, int tipo, int nroMes){
+        LinkedList<Asistencia> tmpColAsistencia = new LinkedList<Asistencia>();
+
+        int regNoEncontrado = 0;
+        for (Personal per : personal.getColPersonal()){
+            if (tipo == 1){
+                tmpColAsistencia = asistencia.obtenerAsistenciaPersona(LocalDate.now().getYear(),nroMes,per.getIdPersonal());
+            } else if(tipo == 2){
+                tmpColAsistencia = asistencia.obtenerTardanzaPersona(LocalDate.now().getYear(),nroMes,per.getIdPersonal());
+            } else if (tipo == 3) {
+                tmpColAsistencia = asistencia.obtenerHoraExtraPersona(LocalDate.now().getYear(),nroMes,per.getIdPersonal());
+            }
+
+            if (tmpColAsistencia.size() > 0){
+                System.out.println(per.getPerNombre() + " " + per.getPerApellido() + " :: " + per.getPerCargo());
+
+                System.out.println(" Hora entrada    | Hora salida      | Minutos Tardanza | Minutos Horas Extras");
+                System.out.println("---------------------------------------------------------------------------------");
+                for (Asistencia asi : tmpColAsistencia){
+                    System.out.println(asi.getAsiFecHoraEntrada().toString().replace("T", " ") + " | " + asi.getAsiFecHoraSalida().toString().replace("T"," ") +
+                            " | " + asi.getAsiMinutoTardanza() + "               | " + asi.getAsiMinutoHoraExtra());
+                }
+                System.out.println();
+            } else {
+                regNoEncontrado++;
+            }
+        }
+        if (regNoEncontrado == personal.getColPersonal().size()) System.out.println("-- No se encontraron registros --");
+
+        System.out.println();
+        listarPersonal(objPersonal);
+    }
+
+    private static void registroPersonal(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
+
+        String nombre, apellido, dni, usu, pwd, cargo, nomSeguroAFP;
+        int hijos;
+        double sueldoBasico;
+        try {
+            System.out.println();
+            System.out.println("REGISTRO DE NUEVO PERSONAL");
+            System.out.println("===========================");
+            System.out.println();
+            System.out.print("Ingrese su nombre: ");
+            nombre = sc.next();
+            System.out.print("Ingrese su apellido: ");
+            apellido = sc.next();
+            System.out.print("Ingrese su numero de DNI: ");
+            dni = sc.next();
+            System.out.println("Ingrese el cargo: ");
+            cargo = sc.next();
+            System.out.print("Ingrese nro de hijos: ");
+            hijos = sc.nextInt();
+            System.out.print("Ingrese sueldo basico: ");
+            sueldoBasico = sc.nextDouble();
+            System.out.print("Ingrese nombre del seguro AFP: ");
+            nomSeguroAFP = sc.next();
+            System.out.print("Ingrese su usuario de logeo: ");
+            usu = sc.next();
+            System.out.print("Ingrese su clave de logeo: ");
+            pwd = sc.next();
+
+            Personal tmpPer = new Personal(personal.getColPersonal().size() + 1,nombre, apellido,"DNI",dni, 2, usu, pwd, LocalDate.now(), hijos, sueldoBasico, cargo, nomSeguroAFP);
+            personal.getColPersonal().add(tmpPer);
+            System.out.println();
+            System.out.println("Registro del nuevo personal exitoso");
+
+        } catch (Exception e){
+            System.out.println("ERROR: ingresando datos, intentelo nuevamente");
+        }
+        revisarPersonal(objPersonal);
+    }
+    private static void actualizacionPersonal(Personal objPersonal){
 
     }
+
     private static void emitirBoleta(){
 
     }

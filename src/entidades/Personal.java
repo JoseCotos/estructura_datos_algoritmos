@@ -70,6 +70,31 @@ public class Personal {
         return tmpPer;
     }
 
+    /**
+     *
+     * @param tipo
+     *      1: todos
+     *      2: tardanza
+     *      3:horas extras
+     * @return
+     */
+    public LinkedList<Personal> obtenerColPersonal(int tipo){
+        LinkedList<Personal> tmpColPersonal = new LinkedList<Personal>();
+        if (tipo == 1) {
+            tmpColPersonal = getColPersonal();
+        } else {
+            for (Personal per : getColPersonal()){
+                if (tipo == 2){
+                    tmpColPersonal.add(per);
+                } else if (tipo == 3){
+                    tmpColPersonal.add(per);
+                }
+            }
+        }
+
+        return tmpColPersonal;
+    }
+
     public int getIdPersonal() {
         return idPersonal;
     }
