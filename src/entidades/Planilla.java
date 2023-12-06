@@ -54,6 +54,18 @@ public class Planilla {
         colPlanilla = new LinkedList<Planilla>();
     }
 
+    public Planilla obtenerBoletaPago(int idPersona){
+        Planilla tmpPlanilla = new Planilla();
+
+        for (Planilla pla : colPlanilla){
+            if (pla.getIdPersona() == idPersona){
+                tmpPlanilla = pla;
+                break;
+            }
+        }
+
+        return tmpPlanilla;
+    }
 
     public void generarPlanilla(Personal personal, Asistencia asistencias, int anio, int nroMes){
         colPlanilla = new LinkedList<Planilla>();

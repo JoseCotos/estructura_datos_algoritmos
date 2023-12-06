@@ -133,7 +133,7 @@ public class Main {
         System.out.println("0 - Regresar");
         System.out.println("1 - Revisar Solicitudes");
         System.out.println("2 - Revisar Personal");
-        System.out.println("3 - Emitir Boletas");
+        System.out.println("3 - Proceso de planilla");
         System.out.println();
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
@@ -142,7 +142,7 @@ public class Main {
         if (opc == 0) mostrarOpcionesMenu();
         if (opc == 1) revisarSolicitud(objPersonal);
         if (opc == 2) revisarPersonal(objPersonal);
-        if (opc == 3) emitirBoleta();
+        if (opc == 3) procesoPlanilla(objPersonal);
     }
     private static void revisarSolicitud(Personal objPersonal){
         Scanner sc = new Scanner(System.in);
@@ -218,6 +218,7 @@ public class Main {
         System.out.println("0 - Retornar");
         System.out.println("1 - Listar al Personal");
         System.out.println("2 - Registro de nuevo Personal");
+        System.out.println("3 - Actualizacion de un Personal");
 
         System.out.print("Ingrese la opción de menú donde desea ingresar: ");
         int opc = sc.nextInt();
@@ -225,6 +226,7 @@ public class Main {
         if (opc == 0) menuAdministrador(objPersonal);
         if (opc == 1) listarPersonal(objPersonal);
         if (opc == 2) registroPersonal(objPersonal);
+        if (opc == 3) actualizacionPersonal(objPersonal);
     }
     private static void listarPersonal(Personal objPersonal){
         Scanner sc = new Scanner(System.in);
@@ -321,11 +323,71 @@ public class Main {
         revisarPersonal(objPersonal);
     }
     private static void actualizacionPersonal(Personal objPersonal){
-
+        System.out.println("Pantalla en mantenimiento!");
+        revisarPersonal(objPersonal);
     }
 
-    private static void emitirBoleta(){
+    private static void procesoPlanilla(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("PROCESO DE PLANILLA");
+        System.out.println("====================");
+        System.out.println();
+        System.out.println("OPCIONES DE MENU");
+        System.out.println("-----------------");
+        System.out.println("0 - Retornar");
+        System.out.println("1 - Generar planilla");
+        System.out.println("2 - Emitir boleta de pago");
+
+        System.out.print("Ingrese la opción de menú donde desea ingresar: ");
+        int opc = sc.nextInt();
+
+        if (opc == 0) menuAdministrador(objPersonal);
+        if (opc == 1) generarPlanilla(objPersonal);
+        if (opc == 2) emitirBoleta(objPersonal);
+    }
+    private static void generarPlanilla(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
+
+        try{
+            System.out.println();
+            System.out.print("Indicar el número de mes que se generará la planilla: ");
+            int nroMes = sc.nextInt();
+
+            planilla.generarPlanilla(personal, asistencia, LocalDate.now().getYear(), nroMes);
+            System.out.println("Planilla generado con éxito");
+        } catch (Exception e){
+            System.out.println("ERROR: ingrese nuevamente los datos");
+        }
+        procesoPlanilla(objPersonal);
+    }
+    private static void emitirBoleta(Personal objPersonal){
+        Scanner sc = new Scanner(System.in);
+
+        try{
+            if (planilla.getColPlanilla().size() > 0){
+                System.out.println();
+                System.out.println("EMISIÓN DE PLANILLA DEL PERSONAL");
+                System.out.println("=================================");
+                System.out.println();
+
+                System.out.print("Ingrese el código del personal para la emisión de su boleta de pago: ");
+                int idPersonal = sc.nextInt();
+
+                Planilla tmpPla = planilla.obtenerBoletaPago(idPersonal);
+                imprimirBoleta(tmpPla);
+            }else{
+                System.out.println("SIN DATOS: para ver datos debe generar la planilla");
+            }
+        } catch (Exception e){
+            System.out.println("ERROR: intentelo nuevamente");
+        }
+        procesoPlanilla(objPersonal);
+    }
+    private static void imprimirBoleta(Planilla objPlanilla){
+        System.out.println();
+        
     }
 
     private static void menuUsuario(Personal objPersonal){
