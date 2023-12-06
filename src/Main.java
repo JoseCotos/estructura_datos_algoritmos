@@ -232,6 +232,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         System.out.println();
+        System.out.println("LISTADO DE PERSONAL");
+        System.out.println("====================");
+        System.out.println();
         System.out.println("OPCIONES DE MENU");
         System.out.println("-----------------");
         System.out.println("0 - Retornar");
@@ -387,7 +390,7 @@ public class Main {
     }
     private static void imprimirBoleta(Planilla objPlanilla){
         System.out.println();
-        
+
     }
 
     private static void menuUsuario(Personal objPersonal){
