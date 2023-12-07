@@ -69,6 +69,16 @@ public class Personal {
         }
         return tmpPer;
     }
+    public Personal obtenerPersonal(int idPersonal){
+        Personal tmpPer = null;
+        for (Personal per : colPersonal){
+            if (per.getIdPersonal() == idPersonal){
+                tmpPer = per;
+                break;
+            }
+        }
+        return tmpPer;
+    }
 
     /**
      *

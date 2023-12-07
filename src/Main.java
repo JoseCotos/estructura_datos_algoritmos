@@ -288,8 +288,7 @@ public class Main {
     private static void registroPersonal(Personal objPersonal){
         Scanner sc = new Scanner(System.in);
 
-        String nombre, apellido, dni, usu, pwd, cargo, nomSeguroAFP;
-        int hijos;
+        String nombre, apellido, dni, usu, pwd, cargo, nomSeguroAFP, hijos;
         double sueldoBasico;
         try {
             System.out.println();
@@ -302,10 +301,10 @@ public class Main {
             apellido = sc.next();
             System.out.print("Ingrese su numero de DNI: ");
             dni = sc.next();
-            System.out.println("Ingrese el cargo: ");
+            System.out.print("Ingrese el cargo: ");
             cargo = sc.next();
             System.out.print("Ingrese nro de hijos: ");
-            hijos = sc.nextInt();
+            hijos = sc.next();
             System.out.print("Ingrese sueldo basico: ");
             sueldoBasico = sc.nextDouble();
             System.out.print("Ingrese nombre del seguro AFP: ");
@@ -315,7 +314,7 @@ public class Main {
             System.out.print("Ingrese su clave de logeo: ");
             pwd = sc.next();
 
-            Personal tmpPer = new Personal(personal.getColPersonal().size() + 1,nombre, apellido,"DNI",dni, 2, usu, pwd, LocalDate.now(), hijos, sueldoBasico, cargo, nomSeguroAFP);
+            Personal tmpPer = new Personal(personal.getColPersonal().size() + 1,nombre, apellido,"DNI",dni, 2, usu, pwd, LocalDate.now(), Integer.parseInt(hijos), sueldoBasico, cargo, nomSeguroAFP);
             personal.getColPersonal().add(tmpPer);
             System.out.println();
             System.out.println("Registro del nuevo personal exitoso");
@@ -389,8 +388,45 @@ public class Main {
         procesoPlanilla(objPersonal);
     }
     private static void imprimirBoleta(Planilla objPlanilla){
-        System.out.println();
+        Personal tmpPer = personal.obtenerPersonal(objPlanilla.getIdPersona());
 
+        System.out.println();
+//        System.out.println(objPlanilla.toString());
+        System.out.println("                       BOLETA DE PAGO NOVIEMBRE 2023");
+        System.out.println("                       ==============================");
+        System.out.println("Trabajador: " + tmpPer.getPerNombre() + " " + tmpPer.getPerApellido() + "              Periodo: " + objPlanilla.getPlaAlMesAnio());
+        System.out.println("DNI: " + tmpPer.getPerNroDoc() + "           Sueldo básico: " + tmpPer.getPerSueldoBasico());
+        System.out.println("Dias trabajados: " + objPlanilla.getPlaDiasTrabajado() + " ");
+
+        double tmpTotalIngreso = tmpPer.getPerSueldoBasico() + objPlanilla.getPlaAsignacionFamiliar() + objPlanilla.getPlaImporteHoraExtra() + objPlanilla.getPlaGratificacion();
+        double tmpTotalEgreso = objPlanilla.getPlaAporteFondo() + objPlanilla.getPlaPrimaSeguro() + objPlanilla.getPlaComision() + objPlanilla.getPlaDescuentoTardanza() + objPlanilla.getPlaQuintaCategoria();
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("CONCEPTOS");
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("INGRESOS:");
+        System.out.println("Sueldo básico:                                                    " + tmpPer.getPerSueldoBasico());
+        System.out.println("Asignación familiar:                                              " + objPlanilla.getPlaAsignacionFamiliar());
+        System.out.println("Horas extras:                                                     " + objPlanilla.getPlaImporteHoraExtra());
+        System.out.println("Gratificación:                                                    " + objPlanilla.getPlaGratificacion());
+        System.out.println("TOTAL INGRESOS:                                                   " + tmpTotalIngreso);
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("EGRESOS:");
+        System.out.println("Aporte fondo:                                                     " + objPlanilla.getPlaAporteFondo());
+        System.out.println("Prima seguro:                                                     " + objPlanilla.getPlaPrimaSeguro());
+        System.out.println("Comisión:                                                         " + objPlanilla.getPlaComision());
+        System.out.println("Tardanza:                                                         " + objPlanilla.getPlaDescuentoTardanza());
+        System.out.println("Quinta categoría:                                                 " + objPlanilla.getPlaQuintaCategoria());
+        System.out.println("TOTAL EGRESO:                                                     " + tmpTotalEgreso);
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("Essalud:                                                          " + objPlanilla.getPlaEsSalud());
+        System.out.println();
+        System.out.println("=============================================================================================");
+        System.out.println("Neto a pagar:                                                     " + convertirDecimal(tmpTotalIngreso - tmpTotalEgreso));
+    }
+
+    public static String convertirDecimal(double valor){
+        double tmpValor = ((int)(valor * 100))/100.0;
+        return String.valueOf(tmpValor);
     }
 
     private static void menuUsuario(Personal objPersonal){
@@ -482,7 +518,8 @@ public class Main {
         menuUsuario(objPersonal);
     }
     private static void verBoletaPago(Personal objPersonal){
-
+        Planilla tmpPla = planilla.obtenerBoletaPago(objPersonal.getIdPersonal());
+        imprimirBoleta(tmpPla);
     }
 
     private static void cabeceraIngresoSistema(Personal objPersonal){
